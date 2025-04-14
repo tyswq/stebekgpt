@@ -42,8 +42,22 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Я - стебекгпт ебланская нейросеть могу ответить либо дилдо либо пенис по моему выбору а теперь иди нахуй!")
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    response = random.choice(["дилдо", "пенис"])
-    await update.message.reply_text(response)
+    """Обработчик обычных сообщений"""
+    user_text = update.message.text.lower()
+    
+    # Специальные ответы
+    if user_text in ["кто долбоеб?", "кто хуесос?"]:
+        await update.message.reply_text("макан")
+    elif user_text in ["кто фембойчик", "кто фембойчик?"]:
+        await update.message.reply_text("Никита")
+    else:
+        # 1% шанс на особый ответ
+        if random.random() < 0.01:
+            await update.message.reply_text("я знаю где ты живешь ебаный пидорас я нашлю на тебя роботов-пидоров")
+        else:
+            # Стандартный рандомный ответ
+            response = random.choice(["дилдо", "пенис"])
+            await update.message.reply_text(response)
 
 def run_bot():
     while True:
